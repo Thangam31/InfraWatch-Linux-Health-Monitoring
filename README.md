@@ -17,3 +17,30 @@ An automated shell-based Linux system health monitoring and log reporting utilit
 1. Grant execution permissions:
    ```bash
    chmod +x infrawatch.sh
+   ```
+2. Run the monitor:
+   ```bash
+   sudo ./infrawatch.sh
+   ```
+
+## 📊 Sample Audit Log Output
+When executed manually or via `cron`, InfraWatch generates structured health reports inside `/var/log/infrawatch/`:
+
+```text
+=====================================================
+        INFRAWATCH SYSTEM HEALTH AUDIT REPORT        
+        Timestamp: Sun Oct 25 09:33:59 UTC 2026                           
+=====================================================
+[*] CPU Utilization : 5%
+[*] Memory Usage    : 35% (318MB / 908MB)
+[*] Disk Usage (/)  : 35%
+-----------------------------------------------------
+=====================================================
+[+] Health Check Completed Successfully.
+```
+
+## ⏰ Cron Automation Setup
+To run InfraWatch automatically every 5 minutes:
+```bash
+(crontab -l 2>/dev/null; echo "*/5 * * * * /home/ubuntu/infrawatch/infrawatch.sh") | crontab -
+```
